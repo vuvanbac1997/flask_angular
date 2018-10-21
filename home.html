@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script language="javascript" src="libs/angular.min.js"></script>
+        <style>
+            .my-input {
+                -webkit-transition:all linear 0.5s;
+                transition:all linear 0.5s;
+                background: transparent;
+            }
+            .my-input.ng-invalid {
+                color:white;
+                background: red;
+
+            }
+            
+            .check.ng-invalid{
+                display: block;
+            }
+            .check.ng-valid{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div ng-app="myapp">
+
+                <div ng-controller="HeaderController">
+                    <h1>{{data.title}} </h1>
+                    <p>{{data.content}}</p>
+                </div>
+                <div ng-controller="ContentController">
+                    <p>{{data.content}}</p>
+                </div>
+                <div class="form-group col-md-4" ng-controller="ButtonController">
+                    <input class="form-control" type="text" ng-model="username" placeholder="username">
+                    <button class="btn btn-primary mt-4" ng-click="sayHello()">Say something</button>
+                    <p>{{ something }}</p>
+                </div>
+                <div class="row" ng-controller="MyController">
+                    <div ng-init="demo='Nội dung'">{{demo}}</div>
+                    {{demo}}
+                    
+                </div>
+                <div class="row" ng-controller="MyController">
+                    <div my-formregister></div>
+                </div>
+                <div class="row">
+                    <form name="testForm" ng-controller="ExampleController">
+                        <input ng-model="val" ng-pattern="/^\d+$/" name="anim" class="my-input" />
+                        <p class="check">please type number</p>
+                    </form>
+                </div>
+                <script>
+                    angular.module("myapp", [])
+                    .controller("HeaderController", function($scope) {
+                        $scope.data = {
+                            title : 'Hello World',
+                            content : 'Chao cac ban'
+                        };
+                    })
+                    .controller("ContentController", function($scope){
+                        $scope.data = {
+                            content: 'hello'
+                        };
+                    })
+                    .controller("ButtonController",['$scope', function($scope){
+                        $scope.sayHello = function (){
+                            $scope.something = "Xin Chao " + $scope.username + '!';
+                        }
+                    }])
+                    .controller('MyController', function($scope) {
+                    //
+                    })
+                    .directive('myFormregister', function() {
+                 
+                        var html = '<table>';
+                            html += '<tr>';
+                                html += '<td>Username:</td>';
+                                html += '<td><input type="text"/></td>';
+                            html += '</tr>';
+                            html += '<tr>';
+                                html += '<td>Password:</td>';
+                                html += '<td><input type="password"/></td>';
+                            html += '</tr>';
+                            html += '<tr>';
+                                html += '<td></td>';
+                                html += '<td><input type="Button" value="Login"/></td>';
+                            html += '</tr>';
+                        html += '</table>';
+                         
+                        return {
+                            template: html
+                        };
+                    })
+                    .controller('ExampleController', ['$scope', function($scope) {
+
+                    }]);;
+                </script>
+            </div>
+        </div>
+        
+    </body>
+</html>

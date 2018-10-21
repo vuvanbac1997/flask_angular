@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+        <script language="javascript" src="libs/angular.min.js"></script>
+        <script language="javascript" src="app.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        <div ng-app="myapp">
+            <div ng-controller="myCtrl">
+                    <span>{[{ message }]}</span>
+                </div>
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <h1 class="text-center">Articles</h1>
+                    <a href="{{ url_for('articles') }}"><button class="btn btn-primary">Add</button></a>
+                </div>
+                
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-8 offset-2">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td>Id</td>
+                                <td>Title</td>
+                                <td>Content</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for article in articles %}
+                            <tr>
+                                <td>{{ article['_id'] }}</td>
+                                <td>{{ article['title'] }}</td> 
+                                <td>{{ article['content'] }}</td>
+
+                                <td>
+                                    <a href="{{ url_for('deleteArticles', id=article['_id']) }}"><button class="btn btn-danger btn-sm">Delete</button></a>
+                                    <a href="{{ url_for('editArticles', id=article['_id']) }}"><button class="btn btn-primary btn-sm">Edit</button></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+        
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<navtabs page-name="state.pageName"></navtabs>
+<div class="container">
+  <div class="col-md-6 offset-3">
+    <h1>Test Angular</h1>
+    <form action="">
+      <label for="username">Username: </label>
+      <input id="username" class="form-control" type="text" ng-model="state.textbox" />
+      <label for="password">Password: </label>
+      <input id="password" class="form-control" type="password" ng-model="state.password" />
+    </form>
+
+    <div ng-show="state.textbox.length > 0">
+      <hr>
+      <p>Your Username: {{ state.textbox }}</p>
+      <p>Your Password: {{ state.password }}</p>
+      <hr>
+    </div>
+  </div>
+
+</div>

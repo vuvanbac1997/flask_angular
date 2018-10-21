@@ -1,0 +1,61 @@
+<navtabs page-name="state.pageName"></navtabs>
+<div class="container">
+  <h1 class="text-center">Article List</h1>
+  <hr>
+  <br>
+  <div class="col-md-8 offset-2">
+
+    <div class="card">
+      <div class="card-header">
+        <a href="" ng-click="showCreate()"><button class="btn btn-secondary">Show</button></a>
+        <!--<a href="" ng-click="showme=false"><button class="btn btn-secondary">Hide</button></a>-->
+      </div>
+
+      <!--<a href="" ng-click="hideme=false"><button class="btn btn-secondary">Hide</button></a>-->
+      <div class="card-body" >
+        <form class="form-group" ng-submit="addItem()" ng-show="showcreate">
+          <fieldset>
+            <input class="form-control" type="text" placeholder="Title" ng-model="article.title" required/>
+            <input class="form-control" type="text" placeholder="Content" ng-model="article.content"  required/>
+            <button class="btn btn-primary mt-1">Add</button>
+          </fieldset>
+        </form>
+
+         <form class="form-group" ng-submit="updateData()" ng-show="showedit">
+          <fieldset>
+            <input class="form-control" type="text" ng-model="infoArticle.title" value="{{infoArticle.title}}" required/>
+            <input class="form-control" type="text" ng-model="infoArticle.content" value="{{infoArticle.content}}"  required/>
+            <button class="btn btn-primary mt-1">Update</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Order</th>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in articles">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ item['_id']['$oid'] }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.content }}</td>
+        <td>
+          <!--Link to other page to edit-->
+          <!--<a href="#/editPage"><Button class="btn btn-info">Edit</Button></a>-->
+
+          <a href="" ><Button class="btn btn-info" ng-click="editData( item['_id']['$oid'] )">Edit</Button></a>
+          <a href=""><Button class="btn btn-danger" ng-click="deleteData(item['_id']['$oid'])">Delete</Button></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
